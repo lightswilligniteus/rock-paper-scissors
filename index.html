@@ -6,8 +6,35 @@
 
   <body>
     <script>
+      function game() {
+        let computerScore = 0;
+        let userScore = 0;
+        for(count = 0; count < 5; count++) {
+          let userChoice = prompt("Rock, Paper or Scissors?");
+          let computerSelection = computerPlay();
+            let result = playRound(userChoice, computerSelection);
+            if (result == "draw") {
+              console.log("draw");
+              count--;
+            } else if (result == "computer") {
+              console.log("Computer Wins! " + computerSelection + " beats "  + userChoice + "!");
+              computerScore++;
+            } else if (result == "user") {
+              console.log("User Wins! " + userChoice + " beats " + computerSelection + "!");
+              userScore++;
+            } else {
+            console.log("Invalid entry! Try again!");
+            count--;
+          }
+        }
+        if (computerScore > userScore) {
+          console.log("Computer won with a score of " + computerScore + " vs. " + userScore + "!");
+        } else {
+          console.log("User won with a score of " + userScore + " vs. " + computerScore + "!");
+        }
+      }
       function computerPlay() {
-        let choices = ["rock", "paper", "scissors"];
+        let choices = ["rock", "paper", "scissor"];
         let rand = Math.random() * 3;
         return choices[Math.floor(rand)];
       }
@@ -16,15 +43,19 @@
           //checks for a draw
           if (checkDraw(playerSelection, computerSelection) == true) {
             return "draw";
+          //checks if computer won
           } else if (checkComputerWins(playerSelection, computerSelection) == true) {
             return "computer";
+          //otherwise user won
           } else {
             return "user";
           }
+        //returns false if the users input isn't rock, paper or scissors
         } else {
-          return "code error";
+          return false;
         }
       }
+      //checks if the users input is either rock, paper or scissors and is case insensitive
       function checkValid(selection) {
         selection = selection.toLowerCase();
         if (selection == "rock") {
@@ -37,6 +68,7 @@
           return false;
         }
       }
+      //checks if the users input and computers input is the same
       function checkDraw(playerSelection, computerSelection) {
         if(playerSelection == computerSelection) {
           return true;
@@ -44,6 +76,7 @@
           return false;
         }
       }
+      //checks if the computer wins
       function checkComputerWins(playerSelection, computerSelection) {
         if (computerSelection == "rock" && playerSelection == "scissors") {
           return true;
@@ -55,29 +88,7 @@
           return false;
         }
       }
-      function game() {
-        let computerScore = 0;
-        let userScore = 0;
-        for(count = 0; count < 5; count++) {
-          let userChoice = prompt("Rock, Paper or Scissors?");
-          let computerSelection = computerPlay();
-            if (checkValid(userChoice) == true) {
-              let result = playRound(userChoice, computerSelection);
-              if (result == "draw") {
-                console.log("Draw! Try Again");
-                count--;
-              } else if (result == "computer") {
-                console.log("Computer Wins! " + computerSelection + " beats "  + userChoice + "!");
-                computerScore++;
-              } else {
-                console.log("User Wins! " + userChoice + " beats " + computerSelection + "!");
-                userScore++;
-              }
-            }
-        }
-        console.log("computer final score: " + computerScore + "!");
-        console.log("user final score: " + userScore + "!");
-      }
+      //runs the game
       game();
     </script>
   </body>
