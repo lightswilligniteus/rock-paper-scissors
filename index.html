@@ -3,19 +3,29 @@
   <head>
     <title>Rock Paper Scissor</title>
   </head>
-   <body>
+
+  <body>
     <script>
-       function computerPlay() {
-        //will randomly return rock paper scissor
+      function computerPlay() {
+        let choices = ["rock", "paper", "scissors"];
+        let rand = Math.random() * 3;
+        return choices[Math.floor(rand)];
       }
-       function playRound(playerSelection, computerSelection) {
+      function playRound(playerSelection, computerSelection) {
         if (checkValid(playerSelection) == true) {
-          return "You Lose! Paper beats Rock";
+          //checks for a draw
+          if (checkDraw(playerSelection, computerSelection) == true) {
+            return "draw";
+          } else if (checkComputerWins(playerSelection, computerSelection) == true) {
+            return "computer";
+          } else {
+            return "user";
+          }
         } else {
           return "code error";
         }
       }
-       function checkValid(selection) {
+      function checkValid(selection) {
         selection = selection.toLowerCase();
         if (selection == "rock") {
           return true;
@@ -27,7 +37,48 @@
           return false;
         }
       }
-
+      function checkDraw(playerSelection, computerSelection) {
+        if(playerSelection == computerSelection) {
+          return true;
+        } else {
+          return false;
+        }
+      }
+      function checkComputerWins(playerSelection, computerSelection) {
+        if (computerSelection == "rock" && playerSelection == "scissors") {
+          return true;
+        } else if (computerSelection == "scissors" && playerSelection == "paper") {
+          return true;
+        } else if (computerSelection == "paper" && playerSelection == "rock") {
+          return true;
+        } else {
+          return false;
+        }
+      }
+      function game() {
+        let computerScore = 0;
+        let userScore = 0;
+        for(count = 0; count < 5; count++) {
+          let userChoice = prompt("Rock, Paper or Scissors?");
+          let computerSelection = computerPlay();
+            if (checkValid(userChoice) == true) {
+              let result = playRound(userChoice, computerSelection);
+              if (result == "draw") {
+                console.log("Draw! Try Again");
+                count--;
+              } else if (result == "computer") {
+                console.log("Computer Wins! " + computerSelection + " beats "  + userChoice + "!");
+                computerScore++;
+              } else {
+                console.log("User Wins! " + userChoice + " beats " + computerSelection + "!");
+                userScore++;
+              }
+            }
+        }
+        console.log("computer final score: " + computerScore + "!");
+        console.log("user final score: " + userScore + "!");
+      }
+      game();
     </script>
   </body>
 </html>
