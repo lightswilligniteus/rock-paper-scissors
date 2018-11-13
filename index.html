@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Rock Paper Scissor</title>
+  </head>
+   <body>
+    <script>
+       function computerPlay() {
+        //will randomly return rock paper scissor
+      }
+       function playRound(playerSelection, computerSelection) {
+        if (checkValid(playerSelection) == true) {
+          return "You Lose! Paper beats Rock";
+        } else {
+          return "code error";
+        }
+      }
+       function checkValid(selection) {
+        selection = selection.toLowerCase();
+        if (selection == "rock") {
+          return true;
+        } else if (selection == "paper") {
+          return true;
+        } else if (selection == "scissors") {
+          return true;
+        } else {
+          return false;
+        }
+      }
+
+    </script>
+  </body>
+</html>
