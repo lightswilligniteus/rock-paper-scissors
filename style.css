@@ -1,0 +1,26 @@
+html, body {
+  height: 100%;
+}
+
+div {
+  margin: auto;
+  position: relative;
+  text-align: center;
+  top: 30%;
+  width: 40%;
+}
+
+button {
+  height: 100px;
+  width: 100px;
+  background-color: lightgreen;
+  border: none;
+}
+
+#reset {
+  padding-top: 10px;
+}
+
+#resetButton {
+  background-color: red;
+}
