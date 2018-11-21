@@ -6,6 +6,21 @@ let result = document.createElement('p');
 div.appendChild(winner);
 div.appendChild(result);
 
+let rock = document.querySelector('#rock');
+rock.addEventListener('click', () => {
+  game(rock.getAttribute('id'));
+});
+
+let paper = document.querySelector('#paper');
+paper.addEventListener('click', () => {
+  game(paper.getAttribute('id'));
+});
+
+let scissor = document.querySelector('#scissor');
+scissor.addEventListener('click', () => {
+  game(scissor.getAttribute('id'));
+});
+
 function game(choice) {
   let computerSelection = computerPlay();
   let gameResult = playRound(choice, computerSelection);
